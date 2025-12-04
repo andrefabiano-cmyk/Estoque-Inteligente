@@ -536,7 +536,7 @@
               });
             } else if (type === 'output') {
               setFormData({ 
-                productId: '', quantity: 1, destination: ''
+                productId: '', quantity: 1, destination: '', responsible: ''
               });
             } else if (type === 'stockChat') {
               setMessageInput("");
@@ -712,6 +712,7 @@
                 priceAtMoment: product.price,
                 totalValue: totalVal,
                 destination: formData.destination,
+                responsible: formData.responsible,
                 date: serverTimestamp()
               });
 
@@ -1054,6 +1055,7 @@
                         <th className="px-4 py-3 text-right whitespace-nowrap">Qtd</th>
                         <th className="px-4 py-3 text-right whitespace-nowrap">Valor Total</th>
                         <th className="px-4 py-3 whitespace-nowrap">Destino</th>
+                        <th className="px-4 py-3 whitespace-nowrap">Responsável</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
@@ -1070,6 +1072,7 @@
                           <td className="px-4 py-3 whitespace-nowrap">
                             <Badge color="gray">{t.destination}</Badge>
                           </td>
+                          <td className="px-4 py-3 text-slate-500 whitespace-nowrap">{t.responsible}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1272,6 +1275,7 @@
                     <Input label="Quantidade a Retirar" type="number" min="1" value={formData.quantity || ''} onChange={e => setFormData({...formData, quantity: e.target.value})} required />
                     <Input label="Destino / Centro de Custo" value={formData.destination || ''} onChange={e => setFormData({...formData, destination: e.target.value})} placeholder="Ex: Cozinha, Limpeza" required />
                   </div>
+                  <Input label="Responsável" value={formData.responsible || ''} onChange={e => setFormData({...formData, responsible: e.target.value})} required />
                   
                   <div className="p-3 bg-amber-50 rounded-lg text-amber-800 text-xs mb-4 flex items-center gap-2">
                      <AlertTriangle size={16} /> A saída será deduzida imediatamente do estoque.
